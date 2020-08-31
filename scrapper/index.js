@@ -10,22 +10,24 @@ https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-6
 */
 
 
-const proverbs_url = 'https://matadornetwork.com/bnt/50-african-proverbs-to-get-you-thinking/';
+const proverbs_url = 'https://safarijunkie.com/culture/african-proverbs/';
 
 async function getdata() {
     const proverbs = []
-
     try {
         const response = await got(proverbs_url);
         const $ = cheerio.load(response.body)
 
-        $('.post-content').find('ol').each((index, element) => {
+        $('.post-content').find('p').each((index, element) => {
             const $element = $(element)
 
-            let proverb_text = $element.text().replace(/\—(.*)/, '').replace(/\d+./, '').trim()
-            let proverb_region = $element.text().match(/\—(.*)/)[1].trim()
+            if ($element.text().length > 1 && $element.text().length  < 184) {
+                let proverb_text = $element.text().replace(/\~(.*)/, '').replace(/\d+./, '').trim()
+                let proverb_region = $element.text().match(/\~(.*)/)[1].trim()
 
-            proverbs.push({ proverb: proverb_text, proverb_region: proverb_region })
+                proverbs.push({ proverb: proverb_text, proverb_region: proverb_region })
+            }
+
         });
 
     } catch (error) {
