@@ -6,7 +6,7 @@ Get random qoutes
 You can install the necessary dependecies by following steps bellow:
 
 ```sh
-$ git clone https://github.com/MuhiaKevin/ChifTorrent.git
+$ git clone https://github.com/MuhiaKevin/african-proverbs-app.git
 $ cd ChifTorrent
 $ npm install
 ```
